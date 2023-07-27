@@ -77,10 +77,10 @@ Responsive layout, **things to notice: Navigation Bar**
 You can read the full documentation here [Swagger](https://app.swaggerhub.com/apis/bangkitdc/single-service/1.0.0)
 
 ### Endpoint
-By default, there was 3 APIs that you can use. Here it is :
+By default, there were 5 APIs that you can use. Here it is :
 
 #### Authentication
-|Method| URL | Explanataion | Need Auth |
+|Method| URL | Explanation | Need Auth |
 |--|--|--|:--:|
 | GET | base_url/login | Login Page | |
 | POST | base_url/login | Login | |
@@ -89,14 +89,14 @@ By default, there was 3 APIs that you can use. Here it is :
 | POST | base_url/logout | Logout | |
 
 #### Catalog
-|Method| URL | Explanataion | Need Auth |
+|Method| URL | Explanation | Need Auth |
 |--|--|--|:--:|
 | GET | base_url/catalog | Get All Barang from Single Service, Display in Catalog Page | &#10004; |
 | PUT | base_url/catalog | Update Barang to Single Service | &#10004; |
 | GET | base_url/catalog/:id | Get Barang by ID (Product Details) from Single Service | &#10004; |
 
 #### Cart
-|Method| URL | Explanataion | Need Auth |
+|Method| URL | Explanation | Need Auth |
 |--|--|--|:--:|
 | GET | base_url/cart | Get All Barang in Cart, Display in Cart Page | &#10004; |
 | POST | base_url/addtocart | Add Barang to Cart | &#10004; |
@@ -104,12 +104,12 @@ By default, there was 3 APIs that you can use. Here it is :
 | DELETE | base_url/removefromcart | Delete Perusahaan by ID | &#10004; |
 
 #### Order History
-|Method| URL | Explanataion | Need Auth |
+|Method| URL | Explanation | Need Auth |
 |--|--|--|:--:|
 | GET | base_url/orderhistory | Get All Order History, Display in OrderHistory Page | &#10004; |
 
 #### About
-|Method| URL | Explanataion | Need Auth |
+|Method| URL | Explanation | Need Auth |
 |--|--|--|:--:|
 | GET | base_url/about | Get About Page | &#10004; |
 
@@ -124,7 +124,7 @@ Entities (classes, modules, functions) should be open for extension but closed f
 
 3. Liskov Substitution Principle (LSP)
 
-The Liskov Substitution Principle (LSP) is primarily concerned with the behavior of objects in a class hierarchy and how derived types can be substituted for their base types without affecting the correctness of the program. Since my doesn't involve inheritance or class hierarchies, LSP is not directly applicable in this context.
+The Liskov Substitution Principle (LSP) is primarily concerned with the behavior of objects in a class hierarchy and how derived types can be substituted for their base types without affecting the correctness of the program. Since my code doesn't involve inheritance or class hierarchies, LSP is not directly applicable in this context.
 
 4. Interface Segregation Principle (ISP)
 
@@ -136,15 +136,111 @@ The DIP states that high-level modules should not depend on low-level modules; b
 
 ## B11 - Additional Features
 1. Search Functionality
-Based on barang's name or barang's product.
+
+Based on Barang's name or Barang's product. (Catalog Search)
 
 https://github.com/bangkitdc/monolith/assets/87227379/002db2b5-90f5-4ba5-a3ab-71fbf3f8fa9a
 
+Based on Barang's name in Order History or the year of Order History created. (Order History Search)
+
+https://github.com/bangkitdc/monolith/assets/87227379/ec392dfa-a798-4cd9-b4e2-acb893595b2b
+
+</br>
+
+I'm using debouncing search for responsiveness and making sure not to waste API calls.
+
+``` javascript
+// Debounce Search
+// Debounce function to delay the search execution
+function debounce(func, wait) {
+  let timeout;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      func.apply(context, args);
+    }, wait);
+  };
+}
+
+// Function to perform the search and update results
+function performSearch() {
+  const q = $('#searchInput').val();
+
+  // AJAX request to the PHP script
+  window.location.href = "{{ route('catalog', ['q' => '']) }}" + q;
+}
+
+// Attach event listener to the search input field with debounce
+const searchInput = $('#searchInput');
+searchInput.on('input', debounce(performSearch, 1000)); // debounce time
+// Set the initial value of the search input field on page load
+$(document).ready(function() {
+  const initialValue = {!! json_encode($q) !!};
+
+  if (initialValue !== null) {
+    searchInput.focus();
+  }
+  searchInput.val(initialValue);
+});
+```
+
+2. Cart Icon
+
+Using a session in PHP to update the cart, and then added the alert (toastify-like) to make the user know what's happening. To add responsiveness also, all input handles are in the frontend. if the stock of one of the Barang in the middle of the transaction got less than the stock, then the transaction will be failed. Every successful transaction will update the DB in Single Service.
 
 https://github.com/bangkitdc/monolith/assets/87227379/ec79ba7a-e264-4342-b44b-1e5a90e2cf68
 
+3. Barang Recommendation
 
-
+Barang Recommendations are based on the last user's transaction/ order. Recommendations based on the same Perusahaan as the Barang on the last transaction. If there is more than 1 Barang, then it will random the choice. I set the recommendations to be a maximum of 4 Barangs. If there are more than 4 Barangs, then it will also randomize so that always be a maximum of 4 Barangs. The page Barang that's being open won't be on recommendations.
 
 https://github.com/bangkitdc/monolith/assets/87227379/ae37ede2-3c43-479f-9a62-95d2e7308461
 
+``` php
+  public function getRecommendation(Request $request, $except) {
+    // Get the currently authenticated user
+    $user = $request->user();
+
+    // Retrieve the last OrderHistory for the user
+    $orderhistory = $user->orderhistory()->latest()->first();
+
+    if ($orderhistory) {
+      // Get the order items for the last OrderHistory
+      $orderItems = $orderhistory->orderItems;
+
+      // Shuffle the array of order items randomly
+      $shuffledOrderItems = $orderItems->shuffle();
+      $randomOrderItem = $shuffledOrderItems->take(1);
+
+      // Get the names ('nama') of the random order item
+      $randomOrderItemName = $randomOrderItem->pluck('nama')->first();
+
+      // Make the HTTP request to the API endpoint with the page parameter
+      $baseUrl = config('app.api_base_url');
+      $response = Http::get($baseUrl . '/barang-noauth-recommendation?nama=' . $randomOrderItemName . '&except=' . $except);
+
+      // Check if the request was successful
+      if ($response->successful()) {
+        // Retrieve the data from the response
+        $data = $response->json();
+
+        // Extract the necessary data for the table
+        $barangs = $data['data'];
+
+        $recommendation = [];
+        foreach ($barangs as $barang) {
+          if ($barang['nama'] != $except) {
+            array_push($recommendation, $barang);
+          }
+        }
+
+        return $recommendation;
+      }
+    } else {
+      return [];
+    }
+    return [];
+  }
+```
