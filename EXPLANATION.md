@@ -133,3 +133,18 @@ The Interface Segregation Principle is about creating specific interfaces that a
 5. Dependency Inversion Principle (DIP)
 
 The DIP states that high-level modules should not depend on low-level modules; both should depend on abstractions. 
+
+## B11 - Additional Features
+1. Search Functionality
+Based on barang's name or barang's product.
+
+https://github.com/bangkitdc/monolith/assets/87227379/002db2b5-90f5-4ba5-a3ab-71fbf3f8fa9a
+
+
+https://github.com/bangkitdc/monolith/assets/87227379/ec79ba7a-e264-4342-b44b-1e5a90e2cf68
+
+
+
+
+https://github.com/bangkitdc/monolith/assets/87227379/ae37ede2-3c43-479f-9a62-95d2e7308461
+
