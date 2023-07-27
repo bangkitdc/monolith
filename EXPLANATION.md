@@ -5,38 +5,26 @@ Monolith Lighthouse result:
 <div align="center">
     <img src="https://github.com/bangkitdc/monolith/blob/main/img/login.jpg" width=700>
     <p align="center"><em>Login Page</em></p>
-</div>
-</br>
-<div align="center">
+    </br>
     <img src="https://github.com/bangkitdc/monolith/blob/main/img/register.jpg" width=700>
     <p align="center"><em>Register Page</em></p>
-</div>
-</br>
-<div align="center">
+    </br>
     <img src="https://github.com/bangkitdc/monolith/blob/main/img/catalog.jpg" width=700>
     <p align="center"><em>Catalog Page</em></p>
-</div>
-</br>
-<div align="center">
+    </br>
     <img src="https://github.com/bangkitdc/monolith/blob/main/img/productdetails.jpg" width=700>
     <p align="center"><em>Product Details Page</em></p>
-</div>
-</br>
-<div align="center">
+    </br>
     <img src="https://github.com/bangkitdc/monolith/blob/main/img/orderhistory.jpg" width=700>
     <p align="center"><em>Order History Page</em></p>
-</div>
-</br>
-<div align="center">
+    </br>
     <img src="https://github.com/bangkitdc/monolith/blob/main/img/cart.jpg" width=700>
     <p align="center"><em>Cart Page</em></p>
-</div>
-</br>
-<div align="center">
+    </br>
     <img src="https://github.com/bangkitdc/monolith/blob/main/img/about.jpg" width=700>
     <p align="center"><em>About Page</em></p>
+    </br>
 </div>
-</br>
 
 ## B07 - Dokumentasi API
 You can read the full documentation here [Swagger](https://app.swaggerhub.com/apis/bangkitdc/single-service/1.0.0)
