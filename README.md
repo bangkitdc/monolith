@@ -34,6 +34,7 @@ Before you run this project locally, you can copy .env.example into .env and the
 It will automatically migrate and seed the database.
 
 After that, if you want to connect this container to the single service container, you have to make a network between the 2 containers on the docker by applying this command on your terminal.
+
 ```sh
     docker network create my_network
     docker network connect my_network app_monolith
@@ -41,6 +42,10 @@ After that, if you want to connect this container to the single service containe
 ```
 
 I use go-app for the single service container and app_monolith for the monolith app in the Dockerfile.
+
+```
+    API_BASE_URL=http://localhost:8000 => API_BASE_URL=http://go-app:8000
+```
 
 ## Preferable
 Using laravel in the docker container is not the best option for running this app, because it's slow to build and then the average response would take about 5-10 seconds. Using the old way to run this app would be preferable.
