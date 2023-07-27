@@ -20,6 +20,7 @@ COPY --from=composer:2.5 /usr/bin/composer /usr/bin/composer
 
 # Define the commands to run when the container starts
 CMD php artisan migrate && \
+  php artisan db:seed && \
   php artisan key:generate && \
   php artisan cache:clear && \
   php artisan config:clear && \

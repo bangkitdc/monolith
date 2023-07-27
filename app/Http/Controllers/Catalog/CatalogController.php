@@ -203,8 +203,5 @@ class CatalogController extends Controller
       return [];
     }
     return [];
-
-    // Handle the case when the request fails
-    abort(500, 'Failed to fetch data from the API endpoint');
   }
 }
