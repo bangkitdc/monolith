@@ -26,6 +26,53 @@ Monolith Lighthouse result:
     </br>
 </div>
 
+## B06 - Responsive Layout
+Responsive layout, **things to notice: Navigation Bar**
+<div align="center">
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/login/laptop.png" width=350>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/login/tablet.png" width=250>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/login/iphone.png" width=150>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/login/android.png" width=150>
+    <p align="center"><em>Login Page</em></p>
+    </br>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/register/laptop.png" width=350>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/register/tablet.png" width=250>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/register/iphone.png" width=150>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/register/android.png" width=150>
+    <p align="center"><em>Register Page</em></p>
+    </br>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/catalog/laptop.png" width=350>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/catalog/tablet.png" width=250>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/catalog/iphone.png" width=150>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/catalog/android.png" width=150>
+    <p align="center"><em>Catalog Page</em></p>
+    </br>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/productdetails/laptop.png" width=350>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/productdetails/tablet.png" width=250>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/productdetails/iphone.png" width=150>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/productdetails/android.png" width=150>
+    <p align="center"><em>Product Details Page</em></p>
+    </br>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/orderhistory/laptop.png" width=350>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/orderhistory/tablet.png" width=250>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/orderhistory/iphone.png" width=150>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/orderhistory/android.png" width=150>
+    <p align="center"><em>Order History Page</em></p>
+    </br>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/cart/laptop.png" width=350>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/cart/tablet.png" width=250>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/cart/iphone.png" width=150>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/cart/android.png" width=150>
+    <p align="center"><em>Cart Page</em></p>
+    </br>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/about/laptop.png" width=350>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/about/tablet.png" width=250>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/about/iphone.png" width=150>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/responsive/about/android.png" width=150>
+    <p align="center"><em>About Page</em></p>
+    </br>
+</div>
+
 ## B07 - Dokumentasi API
 You can read the full documentation here [Swagger](https://app.swaggerhub.com/apis/bangkitdc/single-service/1.0.0)
 
