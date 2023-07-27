@@ -40,7 +40,28 @@ After that, if you want to connect this container to the single service containe
     docker network connect my_network go-app
 ```
 
-I use go-app for the single service container and app_monolith for the monolith app.
+I use go-app for the single service container and app_monolith for the monolith app in the Dockerfile.
+
+## Preferable
+Using laravel in the docker container is not the best option for running this app, because it's slow to build and then the average response would take about 5-10 seconds. Using the old way to run this app would be preferable.
+
+```sh
+    composer install
+    setup the env
+    php artisan migrate
+    php artisan db:seed
+    npm install
+```
+
+Open 2 terminal: for laravel application and for vite preprocessor (for the TailwindCSS)
+
+``` sh
+    npm run dev
+```
+
+``` sh
+    php artisan serve --port=8080
+```
 
 ## Copyright
 2023 © bangkitdc. All Rights Reserved.
