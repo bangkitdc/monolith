@@ -44,7 +44,7 @@
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
           <a href="/catalog" class="catalog text-sm font-semibold leading-6 text-gray-900">Catalog</a>
-          <a href="/orderHistory" class="orderHistory text-sm font-semibold leading-6 text-gray-900">Order History</a>
+          <a href="/orderhistory" class="orderhistory text-sm font-semibold leading-6 text-gray-900">Order History</a>
           <a href="/about" class="about text-sm font-semibold leading-6 text-gray-900">About</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
@@ -64,7 +64,7 @@
             @csrf
             <button aria-label="Log Out" type="submit" class="flex items-center text-center justify-center">
               Log out
-              <i class="material-icons ml-1" style="font-size: 18px; color:#111827;">logout</i>
+              <i class="material-icons ml-1 mt-0.5" style="font-size: 18px; color:#111827;">logout</i>
             </button>
           </form>
         </div>
@@ -77,7 +77,7 @@
         <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div class="flex items-center justify-between">
             <div class="-m-1.5 p-1.5">
-              <p class="font-medium text-blue-500">bondowify</p>
+              <p class="font-medium text-blue-800">bondowify</p>
             </div>
             <button aria-label="Burger Button" type="button" id="closeModal" class="-m-2.5 rounded-md p-2.5 text-gray-700">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -89,7 +89,7 @@
             <div class="-my-6 divide-y divide-gray-500/10">
               <div class="space-y-2 py-6">
                 <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Catalog</a>
-                <a href="/orderHistory" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Order History</a>
+                <a href="/orderhistory" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Order History</a>
                 <a href="/about" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">About</a>
               </div>
               <div class="py-6">
@@ -97,7 +97,7 @@
                   @csrf
                   <button aria-label="Submit" type="submit" class="-mx-3 flex items-center justify-start rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                     Log out
-                    <i class="material-icons ml-2" style="font-size: 18px; color:#111827;">logout</i>
+                    <i class="material-icons ml-2 mt-0.5" style="font-size: 18px; color:#111827;">logout</i>
                   </button>
                 </form>
               </div>
@@ -108,14 +108,14 @@
     </header>
 
     @if (session()->has('success'))
-      <div role="alert" id="alert" class="flex fixed top-20 max-sm:top-10 right-10 max-sm:left-1/2 max-sm:transform max-sm:-translate-x-1/2 items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow z-10">
+      <div role="alert" id="success-alert" class="flex fixed top-20 max-sm:top-10 right-10 max-sm:left-1/2 max-sm:transform max-sm:-translate-x-1/2 items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow z-10">
         <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg">
           <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
           </svg>
         </div>
         <div class="ml-3 text-sm font-normal">{{ session('success') }}</div>
-        <button aria-label="Close" type="button" id="close-button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
+        <button aria-label="Close" type="button" data-dismiss="alert" class="close-button ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
           <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
           </svg>
@@ -124,14 +124,14 @@
     @endif
 
     @if (session()->has('error'))
-      <div role="alert" id="alert" class="flex fixed top-20 max-sm:top-10 right-10 max-sm:left-1/2 max-sm:transform max-sm:-translate-x-1/2 items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow z-10">
+      <div role="alert" id="error-alert" class="flex fixed top-20 max-sm:top-10 right-10 max-sm:left-1/2 max-sm:transform max-sm:-translate-x-1/2 items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow z-10">
         <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg">
           <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
           </svg>
         </div>
         <div class="ml-3 text-sm font-normal">{{ session('error') }}</div>
-        <button aria-label="Close" type="button" id="close-button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
+        <button aria-label="Close" type="button" data-dismiss="alert" class="close-button ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
           <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
           </svg>
@@ -155,15 +155,15 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var closeButton = document.getElementById('close-button');
+      var closeButtons = document.querySelectorAll('.close-button');
 
-      if (!closeButton) {
-        return;
-      }
-      var alertElement = document.getElementById('alert');
-
-      closeButton.addEventListener('click', function() {
-        alertElement.style.display = 'none';
+      closeButtons.forEach(function(closeButton) {
+        closeButton.addEventListener('click', function() {
+          var alertElement = this.parentNode;
+          if (alertElement) {
+            alertElement.style.display = 'none';
+          }
+        });
       });
     });
 

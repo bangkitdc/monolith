@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class OrderHistoryController extends Controller
 {
   /**
-   * Display the order-history
+   * Display the orderhistory
    *
    * @return \Illuminate\Http\Response
    */
@@ -25,15 +25,15 @@ class OrderHistoryController extends Controller
     $q = $request->input('q');
 
     // Retrieve the order history for the user
-    $orderHistoryQuery = OrderHistory::where('user_id', $user->id);
+    $orderhistoryQuery = OrderHistory::where('user_id', $user->id);
 
     // Determine if the query is a number (year search) or a string (name search)
     if (is_numeric($q)) {
       // Search by year
-      $orderHistoryQuery->whereYear('created_at', $q);
+      $orderhistoryQuery->whereYear('created_at', $q);
     } elseif ($q) {
       // Search by name
-      $orderHistoryQuery->whereHas('orderItems',
+      $orderhistoryQuery->whereHas('orderItems',
         function ($orderItemsQuery) use ($q) {
           $orderItemsQuery->where('nama', 'like', '%' . $q . '%'); // Use 'like' for case-insensitive search in MySQL
         }
@@ -41,17 +41,17 @@ class OrderHistoryController extends Controller
     }
 
     // Eager load the orderItems relationship for each order history
-    $orderHistoryQuery->with('orderItems');
+    $orderhistoryQuery->with('orderItems');
 
-    $orderHistoryQuery->latest('id');
+    $orderhistoryQuery->latest('id');
 
     // Get the order history with the applied filters
-    $filteredOrderHistory = $orderHistoryQuery->get();
+    $filteredOrderHistory = $orderhistoryQuery->get();
 
     // Paginate the filtered order history
     $perPage = 3;
     $currentPage = $request->query('page', 1);
-    $orderHistory = new LengthAwarePaginator(
+    $orderhistory = new LengthAwarePaginator(
       $filteredOrderHistory->forPage($currentPage, $perPage),
       $filteredOrderHistory->count(),
       $perPage,
@@ -60,6 +60,6 @@ class OrderHistoryController extends Controller
     );
     
     // Pass the order history data to the view and return the view
-    return view('pages/orderHistory', compact('orderHistory', 'q'));
+    return view('pages/orderhistory', compact('orderhistory', 'q'));
   }
 }

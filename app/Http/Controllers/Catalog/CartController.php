@@ -22,8 +22,15 @@ class CartController extends Controller
         return view('pages/cart', ['cart' => $cart]);
     }
 
-    public function addToCart(Request $request, $id)
+    public function addToCart(Request $request)
     {
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'quantity' => 'required',
+        ]);
+
+        $id = $validatedData['id'];
+
         // Fetch the Barang details based on the given $id (Barang ID)
         // Make the HTTP request to the API endpoint with the page parameter
         $baseUrl = config('app.api_base_url');
@@ -38,10 +45,6 @@ class CartController extends Controller
             $barang = $data['data'];
 
             $cart = session()->get('cart', []);
-
-            $validatedData = $request->validate([
-                'quantity' => 'required',
-            ]);
 
             if (isset($cart[$id])) {
                 $cart[$id]['quantity'] += $validatedData['quantity'];
@@ -64,6 +67,7 @@ class CartController extends Controller
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Barang added to cart successfully!');
         }
+        return redirect()->back()->with('error', 'Add to cart failed');
     }
 
     public function updateCart(Request $request)

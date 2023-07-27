@@ -28,7 +28,7 @@
                     <button 
                       aria-label="Decrement value"
                       type="button" 
-                      class="cursor-pointer rounded-l bg-gray-100 py-1 px-2 w-8 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                      class="cursor-pointer rounded-l bg-gray-100 py-1 px-2 w-8 duration-100 hover:bg-blue-800 hover:text-blue-50"
                       data-action="decrement"
                     >
                       <span class=""> - </span>
@@ -44,7 +44,7 @@
                     <button 
                       aria-label="Increment value"
                       type="button" 
-                      class="cursor-pointer rounded-r bg-gray-100 py-1 px-2 w-8 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                      class="cursor-pointer rounded-r bg-gray-100 py-1 px-2 w-8 duration-100 hover:bg-blue-800 hover:text-blue-50"
                       data-action="increment"
                     >
                       <span class=""> + </span>
@@ -84,7 +84,8 @@
           <form id="checkoutForm" method="POST" action="{{ route('catalog.put') }}">
             @method('PUT')
             @csrf
-            <button aria-label="Checkout" onclick="confirmCheckout(event)" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+            <label for="checkout" class="sr-only">Check out</label>
+            <button aria-label="Checkout" onclick="confirmCheckout(event)" class="mt-6 w-full rounded-md bg-blue-800 py-1.5 font-medium text-blue-50 hover:bg-blue-900">
               Check out
             </button>
           </form>
@@ -93,7 +94,7 @@
     @else
       <div class="mx-20 max-sm:mx-10 max-lg:mx-12">
         <p class="mb-4 text-sm text-gray-500">You have no items in cart.</p>
-        <a href="/catalog" class="px-4 bg-blue-500 py-2 font-medium text-blue-50 hover:bg-blue-600 text-sm rounded">
+        <a href="/catalog" class="px-4 bg-blue-800 py-2 font-medium text-blue-50 hover:bg-blue-900 text-sm rounded">
           Go to Catalog
         </a>
       </div>
@@ -114,7 +115,7 @@
       // Convert the input value to an integer
       const quantity = parseInt(val);
       
-      fetch(`{{ route('updateCart') }}`, {
+      fetch(`{{ route('updatecart') }}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -195,7 +196,7 @@
         var cartId = button.getAttribute("data-id");
 
         if (confirm("Do you really want to remove?")) {
-            fetch(`{{ route('removeFromCart') }}`, {
+            fetch(`{{ route('removefromcart') }}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

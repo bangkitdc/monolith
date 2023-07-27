@@ -24,7 +24,7 @@ Route::get('/', function () {
   return new RedirectResponse('/login');
 });
 
-// Login
+// Authentication
 Route::get('/login', [LoginController::class, 'showLoginForm'])
   ->name('login');
 Route::post('/login', [LoginController::class, 'login'])
@@ -56,21 +56,21 @@ Route::get('/cart', [CartController::class, 'showCart'])
   ->name('cart')
   ->middleware('auth');
 
-Route::post('/addToCart/{id}', [CartController::class, 'addToCart'])
-  ->name('addToCart')
+Route::post('/addtocart', [CartController::class, 'addToCart'])
+  ->name('addtocart')
   ->middleware('auth');
 
-Route::patch('/updateCart', [CartController::class, 'updateCart'])
-  ->name('updateCart')
+Route::patch('/updatecart', [CartController::class, 'updateCart'])
+  ->name('updatecart')
   ->middleware('auth');
 
-Route::delete('removeFromCart', [CartController::class, 'removeFromCart'])
-  ->name('removeFromCart')
+Route::delete('removefromcart', [CartController::class, 'removeFromCart'])
+  ->name('removefromcart')
   ->middleware('auth');
 
-// Order-History
-Route::get('/orderHistory', [OrderHistoryController::class, 'showOrderHistory'])
-  ->name('orderHistory')
+// OrderHistory
+Route::get('/orderhistory', [OrderHistoryController::class, 'showOrderHistory'])
+  ->name('orderhistory')
   ->middleware('auth');
 
 // About

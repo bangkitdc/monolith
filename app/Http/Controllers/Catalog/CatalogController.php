@@ -93,7 +93,7 @@ class CatalogController extends Controller
 
     try {
       // Create the OrderHistory record (initialize as null)
-      $orderHistory = null;
+      $orderhistory = null;
 
       // Calculate the total price of the order
       $totalHarga = 0;
@@ -109,8 +109,8 @@ class CatalogController extends Controller
         if ($response->successful()) {
 
           // Create the OrderHistory if not created already
-          if (!$orderHistory) {
-            $orderHistory = OrderHistory::create([
+          if (!$orderhistory) {
+            $orderhistory = OrderHistory::create([
               'user_id' => $request->user()->id,
               'total_harga' => 0,
             ]);
@@ -123,14 +123,14 @@ class CatalogController extends Controller
             'harga' => $barang['harga'],
           ]);
 
-          $orderHistory->orderItems()->save($orderItem);
+          $orderhistory->orderItems()->save($orderItem);
 
           $totalHarga += intval($barang['harga']) * intval($barang['quantity']);
 
         } else {
           // If any item update fails, delete the created OrderHistory and OrderItem records
-          if ($orderHistory) {
-            $orderHistory->delete();
+          if ($orderhistory) {
+            $orderhistory->delete();
           }
 
           // Set an error flash message with the actual error message from the API response
@@ -140,8 +140,8 @@ class CatalogController extends Controller
       }
 
       // Update the total price in the OrderHistory record
-      if ($orderHistory) {
-        $orderHistory->update(['total_harga' => $totalHarga + $totalHarga * 0.1]);
+      if ($orderhistory) {
+        $orderhistory->update(['total_harga' => $totalHarga + $totalHarga * 0.1]);
       }
 
       // All items updated successfully, clear the cart from the session
@@ -151,8 +151,8 @@ class CatalogController extends Controller
       return redirect('catalog')->with('success', 'Checkout successfully');
     } catch (\Exception $e) {
       // If any exception occurs, delete the created OrderHistory and OrderItem records
-      if ($orderHistory) {
-        $orderHistory->delete();
+      if ($orderhistory) {
+        $orderhistory->delete();
       }
 
       // Set an error flash message with the actual error message from the exception
@@ -165,11 +165,11 @@ class CatalogController extends Controller
     $user = $request->user();
 
     // Retrieve the last OrderHistory for the user
-    $orderHistory = $user->orderHistory()->latest()->first();
+    $orderhistory = $user->orderhistory()->latest()->first();
 
-    if ($orderHistory) {
+    if ($orderhistory) {
       // Get the order items for the last OrderHistory
-      $orderItems = $orderHistory->orderItems;
+      $orderItems = $orderhistory->orderItems;
 
       // Shuffle the array of order items randomly
       $shuffledOrderItems = $orderItems->shuffle();

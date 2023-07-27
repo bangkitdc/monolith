@@ -36,7 +36,7 @@
                   </div>
                   <div>
                     <h2 class="text-sm text-right font-medium text-gray-900">
-                      Rp{{ $barang['harga'] }}
+                      Rp {{ $barang['harga'] }}
                     </h2>
                   </div>
                 </div>

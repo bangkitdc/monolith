@@ -70,7 +70,7 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function orderHistory()
+    public function orderhistory()
     {
         return $this->hasMany(OrderHistory::class);
     }

@@ -10,7 +10,7 @@ class OrderItem extends Model
     protected $fillable = ['nama', 'quantity', 'harga'];
 
     // Define the inverse relationship with OrderHistory model
-    public function orderHistory()
+    public function orderhistory()
     {
         return $this->belongsTo(OrderHistory::class);
     }
