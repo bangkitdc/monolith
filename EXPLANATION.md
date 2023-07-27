@@ -3,25 +3,25 @@
 ## B05 - Lighthouse
 Monolith Lighthouse result:
 <div align="center">
-    <img src="https://github.com/bangkitdc/monolith/blob/main/img/login.jpg" width=700>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/lighthouse/login.jpg" width=700>
     <p align="center"><em>Login Page</em></p>
     </br>
-    <img src="https://github.com/bangkitdc/monolith/blob/main/img/register.jpg" width=700>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/lighthouse/register.jpg" width=700>
     <p align="center"><em>Register Page</em></p>
     </br>
-    <img src="https://github.com/bangkitdc/monolith/blob/main/img/catalog.jpg" width=700>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/lighthouse/catalog.jpg" width=700>
     <p align="center"><em>Catalog Page</em></p>
     </br>
-    <img src="https://github.com/bangkitdc/monolith/blob/main/img/productdetails.jpg" width=700>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/lighthouse/productdetails.jpg" width=700>
     <p align="center"><em>Product Details Page</em></p>
     </br>
-    <img src="https://github.com/bangkitdc/monolith/blob/main/img/orderhistory.jpg" width=700>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/lighthouse/orderhistory.jpg" width=700>
     <p align="center"><em>Order History Page</em></p>
     </br>
-    <img src="https://github.com/bangkitdc/monolith/blob/main/img/cart.jpg" width=700>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/lighthouse/cart.jpg" width=700>
     <p align="center"><em>Cart Page</em></p>
     </br>
-    <img src="https://github.com/bangkitdc/monolith/blob/main/img/about.jpg" width=700>
+    <img src="https://github.com/bangkitdc/monolith/blob/main/img/lighthouse/about.jpg" width=700>
     <p align="center"><em>About Page</em></p>
     </br>
 </div>
