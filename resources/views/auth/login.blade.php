@@ -24,7 +24,7 @@
               @enderror
             </div>
             <div class="pt-2">
-              <button type="submit" class="w-full text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-2 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+              <button aria-label="Sign in" type="submit" class="w-full text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-2 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Sign in
               </button>
             </div>

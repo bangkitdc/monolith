@@ -5,6 +5,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bondowify is an Ecommerce Website">
+  <meta name="keywords" content="bondowify, ecommerce, shopping">
+  <meta name="author" content="bangkitdc">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Bondowify">
+  <meta property="og:description" content="Bondowify is an Ecommerce Website">
+  <meta property="og:image" content="/public/paper-bag.jpg">
+  <meta property="og:url" content="http://bondowify.com">
   <title>App</title>
   @vite('resources/css/app.css')
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -17,11 +25,13 @@
       <nav class="mx-auto flex items-center justify-between p-6 lg:px-8 border-b md:mx-12" aria-label="Global">
         <div class="flex lg:flex-1">
           <div class="-m-1.5 p-1.5">
-            <p class="font-medium text-blue-500">bondowify</p>
+            <p class="font-medium text-blue-800">bondowify</p>
           </div>
         </div>
         <div class="flex lg:hidden">
-          <button type="button"
+          <button 
+            aria-label="Open Menu"
+            type="button"
             class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             id="openModal"  
           >
@@ -52,7 +62,7 @@
           </a>
           <form class="text-sm font-semibold leading-6 text-gray-900" action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="flex items-center text-center justify-center">
+            <button aria-label="Log Out" type="submit" class="flex items-center text-center justify-center">
               Log out
               <i class="material-icons ml-1" style="font-size: 18px; color:#111827;">logout</i>
             </button>
@@ -69,7 +79,7 @@
             <div class="-m-1.5 p-1.5">
               <p class="font-medium text-blue-500">bondowify</p>
             </div>
-            <button type="button" id="closeModal" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+            <button aria-label="Burger Button" type="button" id="closeModal" class="-m-2.5 rounded-md p-2.5 text-gray-700">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -85,7 +95,7 @@
               <div class="py-6">
                 <form action="{{ route('logout') }}" method="POST">
                   @csrf
-                  <button type="submit" class="-mx-3 flex items-center justify-start rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                  <button aria-label="Submit" type="submit" class="-mx-3 flex items-center justify-start rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                     Log out
                     <i class="material-icons ml-2" style="font-size: 18px; color:#111827;">logout</i>
                   </button>
@@ -105,7 +115,7 @@
           </svg>
         </div>
         <div class="ml-3 text-sm font-normal">{{ session('success') }}</div>
-        <button type="button" id="close-button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
+        <button aria-label="Close" type="button" id="close-button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
           <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
           </svg>
@@ -121,7 +131,7 @@
           </svg>
         </div>
         <div class="ml-3 text-sm font-normal">{{ session('error') }}</div>
-        <button type="button" id="close-button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
+        <button aria-label="Close" type="button" id="close-button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
           <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
           </svg>

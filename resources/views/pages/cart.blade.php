@@ -15,7 +15,7 @@
           @foreach ( array_reverse($cart) as $Id => $barang )
             <div class="mb-6 border rounded-lg bg-white p-6 shadow-sm flex justify-start">
               <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-md bg-gray-100 lg:aspect-none group-hover:opacity-60 lg:h-40 lg:w-60 md:h-32 md:w-48 max-md:h-24 max-md:w-24 max-sm:h-20 max-sm:w-20">
-                <img src="/paper-bag.jpg" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                <img src="/paper-bag.jpg" class="h-full w-full object-cover object-center lg:h-full lg:w-full" alt="product-img">
               </div>
               <div class="ml-4 flex w-full justify-between">
                 <div class="mt-5 max-md:mt-1">
@@ -26,6 +26,7 @@
                 <div class="mt-5 max-md:mt-1 justify-between space-y-6 max-md:space-y-4 block space-x-6 max-md:space-x-2">
                   <div class="flex items-center justify-end border-gray-100">
                     <button 
+                      aria-label="Decrement value"
                       type="button" 
                       class="cursor-pointer rounded-l bg-gray-100 py-1 px-2 w-8 duration-100 hover:bg-blue-500 hover:text-blue-50"
                       data-action="decrement"
@@ -41,6 +42,7 @@
                       max="{{ $barang['stok'] }}"
                     />
                     <button 
+                      aria-label="Increment value"
                       type="button" 
                       class="cursor-pointer rounded-r bg-gray-100 py-1 px-2 w-8 duration-100 hover:bg-blue-500 hover:text-blue-50"
                       data-action="increment"
@@ -50,7 +52,7 @@
                   </div>
                   <div class="flex items-center space-x-4 max-md:space-x-2">
                     <p class="text-sm">Rp {{ $barang['harga'] }}</p>
-                    <button onclick="removeFromCart(this)" data-id="{{ $Id }}">
+                    <button aria-label="Remove Product from Cart" onclick="removeFromCart(this)" data-id="{{ $Id }}">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                       </svg>
@@ -82,7 +84,7 @@
           <form id="checkoutForm" method="POST" action="{{ route('catalog.put') }}">
             @method('PUT')
             @csrf
-            <button onclick="confirmCheckout(event)" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+            <button aria-label="Checkout" onclick="confirmCheckout(event)" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
               Check out
             </button>
           </form>
@@ -216,7 +218,7 @@
 </script>
   <style>
     .cart-icon {
-      fill: #3b82f6;
+      fill: #1e40af;
     }
   </style>
 @endsection

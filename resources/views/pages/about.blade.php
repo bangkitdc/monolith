@@ -24,7 +24,7 @@
   </div>
   <style>
     .about {
-      color: #3b82f6;
+      color: #1e40af;
     }
   </style>
 @endsection

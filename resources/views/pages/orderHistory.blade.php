@@ -11,7 +11,7 @@
         <div class="flex justify-end">
           <div class="relative max-sm:w-full">
             <input type="text" id="searchInput" class="border border-gray-500 rounded-lg bg-transparent h-9 max-md:h-8 px-3 pr-10 max-md:pr-8 text-sm focus:outline-none text-gray-700 placeholder:text-gray-400 hover:bg-gray-100 max-sm:w-full" placeholder="Search...">
-            <button class="absolute right-0 top-0 mt-0.5 pt-1 max-md:pt-0.5 h-8 w-8 max-md:h-7 max-md:w-7 mx-2 max-md:mx-1 cursor-default">
+            <button aria-label="Search" class="absolute right-0 top-0 mt-0.5 pt-1 max-md:pt-0.5 h-8 w-8 max-md:h-7 max-md:w-7 mx-2 max-md:mx-1 cursor-default">
               <i class="material-icons">search</i>
             </button>
           </div>
@@ -43,7 +43,7 @@
                 @foreach ($order->orderItems as $orderItem)
                   <div class="mx-6 my-3 flex justify-start">
                     <div class="h-24 w-36">
-                      <img src="/paper-bag.jpg" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                      <img src="/paper-bag.jpg" class="h-full w-full object-cover object-center lg:h-full lg:w-full" alt="product-img">
                     </div>
                     <div class="flex flex-col ml-4 flex-grow">
                       <div class="flex justify-between">
@@ -90,6 +90,7 @@
           <div class="max-sm:pt-3 max-sm:max-w-full sm:mr-8">
             <nav class="isolate inline-flex -space-x-px shadow-sm" aria-label="Pagination">
               <button 
+                aria-label="Go to First Page"
                 onclick="gotoPage(1)"
                 class="rounded-l-md box-page-arrow {{ ($orderHistory->currentPage() === 1) ? 'cursor-default' : 'hover:bg-gray-100 cursor-pointer' }}"
                 id="first-link"            
@@ -97,6 +98,7 @@
                 <i class="material-icons" style="font-size: 20px; color:#374151">keyboard_double_arrow_left</i>
               </button>
               <button 
+                aria-label="Go to Previous Page"
                 onclick="gotoPage({{ $orderHistory->currentPage() - 1 }})"
                 class="box-page-arrow {{ ($orderHistory->currentPage() === 1) ? 'cursor-default' : 'hover:bg-gray-100' }}" 
                 id="prev-link"
@@ -106,25 +108,26 @@
 
               @if(ceil($orderHistory->total() / 3) <= 5)
                 @for ($i = 1; $i <= min(ceil($orderHistory->total() / 3), 5); $i++)
-                  <button onclick="gotoPage({{ $i }})" class="box-page {{ ($orderHistory->currentPage() === $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $i }}</button>
+                  <button aria-label="Go to Page" onclick="gotoPage({{ $i }})" class="box-page {{ ($orderHistory->currentPage() === $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $i }}</button>
                 @endfor
               @else
                 @if($orderHistory->currentPage())
                   @for ($i = 1; $i <= 3; $i++)
-                    <button onclick="gotoPage({{ $i }})" class="box-page {{ ($orderHistory->currentPage() === $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $i }}</button>
+                    <button aria-label="Go to Page" onclick="gotoPage({{ $i }})" class="box-page {{ ($orderHistory->currentPage() === $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $i }}</button>
                   @endfor
                 @elseif ($orderHistory->currentPage() == ceil($orderHistory->total() / 3))
                   @for ($i = 0; $i < 3; $i++)
-                    <button onclick="gotoPage({{ ceil($orderHistory->total() / 3) - $i }})" class="box-page {{ ($orderHistory->currentPage() == ceil($orderHistory->total() / 3) - $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ ceil($orderHistory->total() / 3) - $i }}</button>
+                    <button aria-label="Go to Page" onclick="gotoPage({{ ceil($orderHistory->total() / 3) - $i }})" class="box-page {{ ($orderHistory->currentPage() == ceil($orderHistory->total() / 3) - $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ ceil($orderHistory->total() / 3) - $i }}</button>
                   @endfor
                 @else
                   @for ($i = -1; $i <= 1; $i++)
-                    <button onclick="gotoPage({{ ceil($orderHistory->total() / 3) + $i }})" class="box-page {{ ($orderHistory->currentPage() === $orderHistory->currentPage() + $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $orderHistory->currentPage() + $i }}</button>
+                    <button aria-label="Go to Page" onclick="gotoPage({{ ceil($orderHistory->total() / 3) + $i }})" class="box-page {{ ($orderHistory->currentPage() === $orderHistory->currentPage() + $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $orderHistory->currentPage() + $i }}</button>
                   @endfor
                 @endif
               @endif
 
               <button 
+                aria-label="Go to Next Page"
                 onclick="gotoPage({{ $orderHistory->currentPage() + 1 }})"
                 class="box-page-arrow {{ ($orderHistory->currentPage() == ceil($orderHistory->total() / 3)) ? 'cursor-default' : 'hover:bg-gray-100' }}"
                 id="next-link"
@@ -132,6 +135,7 @@
                 <i class="material-icons" style="font-size: 20px; color:#6b7280">chevron_right</i>
               </button>
               <button 
+                aria-label="Go to Last Page"
                 onclick="gotoPage({{ ceil($orderHistory->total() / 3) }})"
                 class="rounded-r-md box-page-arrow {{ ($orderHistory->currentPage() == ceil($orderHistory->total() / 3)) ? 'cursor-default' : 'hover:bg-gray-100' }}"
                 id="last-link"
@@ -192,7 +196,7 @@
 
   <style>
     .orderHistory {
-      color: #3b82f6;
+      color: #1e40af;
     }
 
     .custom-truncate {

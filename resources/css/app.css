@@ -10,3 +10,7 @@
 .box-page-arrow {
   @apply relative items-center px-2 py-2 ring-1 ring-inset text-gray-900 ring-gray-300 w-9 h-9
 }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

@@ -11,7 +11,7 @@
         <div class="flex justify-end">
           <div class="relative max-sm:w-full">
             <input type="text" id="searchInput" class="border border-gray-500 rounded-lg bg-transparent h-9 max-md:h-8 px-3 pr-10 max-md:pr-8 text-sm focus:outline-none text-gray-700 placeholder:text-gray-400 hover:bg-gray-100 max-sm:w-full" placeholder="Search...">
-            <button class="absolute right-0 top-0 mt-0.5 pt-1 max-md:pt-0.5 h-8 w-8 max-md:h-7 max-md:w-7 mx-2 max-md:mx-1 cursor-default">
+            <button aria-label="Search" class="absolute right-0 top-0 mt-0.5 pt-1 max-md:pt-0.5 h-8 w-8 max-md:h-7 max-md:w-7 mx-2 max-md:mx-1 cursor-default">
               <i class="material-icons">search</i>
             </button>
           </div>
@@ -21,13 +21,13 @@
             @foreach ( $barangs as $barang )
               <div class="group relative cursor-pointer max-sm:pb-4 p-4 border shadow-sm rounded-lg" onclick="navigateToProductDetails('{{ $barang['id'] }}')">
                 <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-100 lg:aspect-none group-hover:opacity-60 lg:h-60 sm:h-60 max-sm:h-60">
-                  <img src="/paper-bag.jpg" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                  <img src="/paper-bag.jpg" class="h-full w-full object-cover object-center lg:h-full lg:w-full" alt="product-img">
                 </div>
                 <div class="mt-4 flex justify-between">
                   <div>
-                    <h3 class="text-sm text-gray-700">
+                    <h2 class="text-sm text-gray-700">
                       {{ $barang['nama'] }}
-                    </h3>
+                    </h2>
                     @if ($barang['stok'] > 0)
                       <p class="mt-1 text-left text-sm italic text-gray-500">stock: {{ $barang['stok'] }}</p>
                     @else
@@ -35,9 +35,9 @@
                     @endif
                   </div>
                   <div>
-                    <h3 class="text-sm text-right font-medium text-gray-900">
+                    <h2 class="text-sm text-right font-medium text-gray-900">
                       Rp{{ $barang['harga'] }}
-                    </h3>
+                    </h2>
                   </div>
                 </div>
               </div>
@@ -65,6 +65,7 @@
         <div class="max-sm:pt-3 max-sm:max-w-full sm:mr-8">
           <nav class="isolate inline-flex -space-x-px shadow-sm" aria-label="Pagination">
             <button 
+              aria-label="Go to First Page"
               onclick="gotoPage(1)"
               class="rounded-l-md box-page-arrow {{ ($meta['current_page'] === 1) ? 'cursor-default' : 'hover:bg-gray-100 cursor-pointer' }}"
               id="first-link"            
@@ -72,6 +73,7 @@
               <i class="material-icons" style="font-size: 20px; color:#374151">keyboard_double_arrow_left</i>
             </button>
             <button 
+              aria-label="Got to Previous Page"
               onclick="gotoPage({{ $meta['current_page'] - 1 }})"
               class="box-page-arrow {{ ($meta['current_page'] === 1) ? 'cursor-default' : 'hover:bg-gray-100' }}" 
               id="prev-link"
@@ -81,25 +83,26 @@
 
             @if($meta['total_pages'] <= 5)
               @for ($i = 1; $i <= min($meta['total_pages'], 5); $i++)
-                <button onclick="gotoPage({{ $i }})" class="box-page {{ ($meta['current_page'] === $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $i }}</button>
+                <button aria-label="Go To Page" onclick="gotoPage({{ $i }})" class="box-page {{ ($meta['current_page'] === $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $i }}</button>
               @endfor
             @else
               @if($meta['current_page'])
                 @for ($i = 1; $i <= 3; $i++)
-                  <button onclick="gotoPage({{ $i }})" class="box-page {{ ($meta['current_page'] === $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $i }}</button>
+                  <button aria-label="Go To Page" onclick="gotoPage({{ $i }})" class="box-page {{ ($meta['current_page'] === $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $i }}</button>
                 @endfor
               @elseif ($meta['current_page'] === $meta['total_pages'])
                 @for ($i = 0; $i < 3; $i++)
-                  <button onclick="gotoPage({{ $meta['total_pages'] - $i }})" class="box-page {{ ($meta['current_page'] === $meta['total_pages'] - $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $meta['total_pages'] - $i }}</button>
+                  <button aria-label="Go To Page" onclick="gotoPage({{ $meta['total_pages'] - $i }})" class="box-page {{ ($meta['current_page'] === $meta['total_pages'] - $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $meta['total_pages'] - $i }}</button>
                 @endfor
               @else
                 @for ($i = -1; $i <= 1; $i++)
-                  <button onclick="gotoPage({{ $meta['total_pages'] + $i }})" class="box-page {{ ($meta['current_page'] === $meta['current_page'] + $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $meta['current_page'] + $i }}</button>
+                  <button aria-label="Go To Page" onclick="gotoPage({{ $meta['total_pages'] + $i }})" class="box-page {{ ($meta['current_page'] === $meta['current_page'] + $i) ? 'bg-gray-100 cursor-default' : '' }}">{{ $meta['current_page'] + $i }}</button>
                 @endfor
               @endif
             @endif
 
             <button 
+              aria-label="Go to Next Page"
               onclick="gotoPage({{ $meta['current_page'] + 1 }})"
               class="box-page-arrow {{ ($meta['current_page'] === $meta['total_pages']) ? 'cursor-default' : 'hover:bg-gray-100' }}"
               id="next-link"
@@ -107,6 +110,7 @@
               <i class="material-icons" style="font-size: 20px; color:#6b7280">chevron_right</i>
             </button>
             <button 
+              aria-label="Go to Last Page"
               onclick="gotoPage({{ $meta['total_pages'] }})"
               class="rounded-r-md box-page-arrow {{ ($meta['current_page'] === $meta['total_pages']) ? 'cursor-default' : 'hover:bg-gray-100' }}"
               id="last-link"
@@ -170,7 +174,7 @@
 
   <style>
     .catalog {
-      color: #3b82f6;
+      color: #1e40af;
     }
   </style>
 @endsection
