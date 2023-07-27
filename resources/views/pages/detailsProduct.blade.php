@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="pt-10 mx-20 max-sm:mx-10 max-lg:mx-12 flex-grow">
-    <div class="container mx-auto px-6 flex flex-col">
+    <div class="container mx-auto flex flex-col">
       <div class="md:flex md:items-center">
         <div class="w-full h-64 md:w-1/2 lg:h-96">
           <img class="h-full w-full rounded-md object-cover max-w-lg mx-auto" src="/paper-bag.jpg" alt="Product Image Main">
@@ -67,7 +67,7 @@
           <h1 class="text-2xl font-medium pb-1">More Products For You</h1>
           <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6">
             @foreach ($recommendations as $recommendation)
-              <div class="w-full max-w-sm mx-auto rounded-md shadow-sm border overflow-hidden" onclick="navigateToProductDetails('{{ $recommendation['id'] }}')">
+              <div class="w-full max-w-sm rounded-md shadow-sm border overflow-hidden" onclick="navigateToProductDetails('{{ $recommendation['id'] }}')">
                 <div class="flex items-end justify-end h-56 w-full bg-cover bg-center" style="background-image: url('/paper-bag.jpg')" alt="Product Image Recommendation">
                   <button aria-label="Cart" class="p-2 rounded-full bg-blue-800 text-white mx-5 -mb-4 hover:bg-blue-900">
                     <svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

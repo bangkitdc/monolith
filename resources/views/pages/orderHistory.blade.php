@@ -55,7 +55,7 @@
                         </p>
                       </div>
                       <p class="text-sm my-1 text-gray-500">
-                        Rp{{ $orderItem->harga }}&nbsp;&nbsp;|&nbsp;&nbsp;Qty: {{ $orderItem->quantity }}
+                        Rp {{ $orderItem->harga }}&nbsp;&nbsp;|&nbsp;&nbsp;Qty: {{ $orderItem->quantity }}
                       </p>
                       <p class="text-sm text-gray-500 custom-truncate">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo animi, libero deleniti impedit reiciendis perferendis architecto vitae consequatur veniam fuga.
