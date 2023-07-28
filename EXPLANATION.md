@@ -1,5 +1,19 @@
 # Explanation
 
+
+## B04 - Polling
+In my application, all data is fetched and rendered on the server side, and updating the HTML content with JavaScript would lead to performance issues. To address this, I decided to implement a polling-like technique on the front-end side. The approach involves refreshing the entire page every 5 minutes to ensure the displayed information is up-to-date. While this method may not be considered the best practice due to potential drawbacks such as increased bandwidth usage and server load, it provides a simple and effective way to keep the data current without introducing complex client-side scripting. As my application primarily relies on server-side rendering, this polling approach meets my immediate needs.
+
+```javascript
+// Function to reload the page
+function refreshPage() {
+    window.location.reload(true);
+}
+
+// Refresh the page every 5 minutes
+setInterval(refreshPage, 300000);
+```
+
 ## B05 - Lighthouse
 Monolith Lighthouse result:
 <div align="center">
@@ -134,6 +148,62 @@ The Interface Segregation Principle is about creating specific interfaces that a
 
 The DIP states that high-level modules should not depend on low-level modules; both should depend on abstractions. 
 
+## B10 - Automated Testing
+I made Unit Test per Feature based on the page/ controller of the application. Here is the example of LoginTest.
+```php
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+class LoginTest extends TestCase
+{
+    use RefreshDatabase;
+    public function testValidLogin(): void
+    {
+        // Create a test user with a known password
+        $user = User::create([
+            'first_name' => 'test123',
+            'last_name' => 'test123',
+            'username' => 'test123',
+            'email' => 'test123@example.com',
+            'password' => bcrypt('testpassword'),
+        ]);
+
+        $response = $this->post(route('login'), [
+            'email_username' => 'test123@example.com', // Use the email as the input
+            'password' => 'testpassword', // Use the known password
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertRedirect('catalog');
+        $this->assertAuthenticatedAs($user); // Ensure the user is authenticated
+    }
+
+    public function testInvalidLogin(): void
+    {
+        $response = $this->post(route('login'), [
+            'email_username' => 'asdfgh@example.com', // Use a non-existent email
+            'password' => 'asdfghjkl', // Use an invalid password
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors(['loginError']); // Ensure login error message exists in the session
+
+        $this->assertGuest(); // Ensure no user is authenticated
+    }
+}
+```
+
+You can check out the full Unit Test in tests/Feature.
+
+https://github.com/bangkitdc/monolith/assets/87227379/37ac3222-3451-469b-9ab4-7b88187782bd
+
+
 ## B11 - Additional Features
 1. Search Functionality
 
@@ -244,3 +314,4 @@ https://github.com/bangkitdc/monolith/assets/87227379/ae37ede2-3c43-479f-9a62-95
     return [];
   }
 ```
+

@@ -48,7 +48,7 @@ I use go-app for the single service container and app_monolith for the monolith 
 ```
 
 ## Preferable
-Using laravel in the docker container is not the best option for running this app, because it's slow to build and then the average response would take about 5-10 seconds. Using the old way to run this app would be preferable.
+Using laravel in the docker container is not the best option for running this app, because it's slow to build and then the average response would take about 3-5 seconds. Using the old way to run this app would be preferable.
 
 ```sh
     composer install
