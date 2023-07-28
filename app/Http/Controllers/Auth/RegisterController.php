@@ -31,11 +31,11 @@ class RegisterController extends Controller
         ]);
 
         User::create([
-            'first_name' => request('first_name'),
-            'last_name' => request('last_name'),
-            'username' => request('username'),
-            'email' => request('email'),
-            'password' => Hash::make(request('password')),
+            'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
         ]);
 
         return redirect('login')->with('success', 'Registration successful, Please sign in!');

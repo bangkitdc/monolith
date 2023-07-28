@@ -170,6 +170,14 @@
       }
       searchInput.val(initialValue);
     });
+
+    // Function to reload the page
+    function refreshPage() {
+        window.location.reload(true);
+    }
+
+    // Refresh the page every 5 minutes (300,000 milliseconds)
+    setInterval(refreshPage, 300000);
   </script>
 
   <style>

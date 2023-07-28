@@ -135,7 +135,7 @@ class CatalogController extends Controller
 
           // Set an error flash message with the actual error message from the API response
           $errorMessage = $response->json()['message'] ?? 'Error occurred in the server';
-          return back()->with('error', $errorMessage);
+          return back()->withErrors(['error' => $errorMessage]);
         }
       }
 
@@ -156,7 +156,7 @@ class CatalogController extends Controller
       }
 
       // Set an error flash message with the actual error message from the exception
-      return back()->with('error', $e->getMessage());
+      return back()->withErrors(['error' => $e->getMessage()]);
     }
   }
 

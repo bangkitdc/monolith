@@ -54,7 +54,7 @@ class LoginController extends Controller
             return redirect('catalog')->header('Authorization', 'Bearer ' . $token);
         }
 
-        return back()->with('loginError', 'Invalid credentials!')->withInput();
+        return back()->withErrors(['loginError' => 'Invalid credentials!'])->withInput();
     }
 
     /**

@@ -61,13 +61,13 @@ class CartController extends Controller
 
             if ($cart[$id]['quantity'] > $barang['stok']) {
                 $cart[$id]['quantity'] -= $validatedData['quantity'];
-                return redirect()->back()->with('error', 'Barang stock is not enough!');
+                return back()->withErrors(['error' => 'Barang stock is not enough!']);
             }
 
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Barang added to cart successfully!');
         }
-        return redirect()->back()->with('error', 'Add to cart failed');
+        return back()->withErrors(['error' => 'Add to cart failed']);
     }
 
     public function updateCart(Request $request)
