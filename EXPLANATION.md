@@ -1,5 +1,19 @@
 # Explanation
 
+
+## B04 - Polling
+In my application, all data is fetched and rendered on the server side, and updating the HTML content with JavaScript would lead to performance issues. To address this, I decided to implement a polling-like technique on the front-end side. The approach involves refreshing the entire page every 5 minutes to ensure the displayed information is up-to-date. While this method may not be considered the best practice due to potential drawbacks such as increased bandwidth usage and server load, it provides a simple and effective way to keep the data current without introducing complex client-side scripting. As my application primarily relies on server-side rendering, this polling approach meets my immediate needs.
+
+```javascript
+// Function to reload the page
+function refreshPage() {
+    window.location.reload(true);
+}
+
+// Refresh the page every 5 minutes
+setInterval(refreshPage, 300000);
+```
+
 ## B05 - Lighthouse
 Monolith Lighthouse result:
 <div align="center">
