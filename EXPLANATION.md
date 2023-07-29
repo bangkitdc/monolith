@@ -34,7 +34,50 @@ https://github.com/bangkitdc/monolith/assets/87227379/622d61f5-633b-4135-807e-10
     <img height="220" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/09acb514-3fe7-496b-a81f-67650a921e41">
 </div>
 
-2. 
+2. Broken Access Control
+Access control enforces a policy such that users cannot act outside of their intended permissions. Failures typically lead to unauthorized information disclosure, modification, or destruction of all data or performing a business function outside the user's limits.
+
+https://github.com/bangkitdc/monolith/assets/87227379/75bdacf8-7b74-41c7-84e1-33c6d4154afd
+
+I'm implementing middleware for every route that can be accessed by authenticated users.
+``` go
+// Protected routes (Middleware)
+api := router.PathPrefix("/").Subrouter()
+api.Use(middleware.JWTMiddleware)
+
+// User
+api.HandleFunc("/self", selfcontroller.GetSelf).Methods("GET")
+
+// Barang
+api.HandleFunc("/barang", barangcontroller.GetBarangs).Methods("GET")
+api.HandleFunc("/barang/{id}", barangcontroller.GetBarangByID).Methods("GET")
+api.HandleFunc("/barang", barangcontroller.CreateBarang).Methods("POST")
+api.HandleFunc("/barang/{id}", barangcontroller.UpdateBarang).Methods("PUT")
+api.HandleFunc("/barang/{id}", barangcontroller.DeleteBarang).Methods("DELETE")
+```
+
+``` php
+class Authenticate extends Middleware
+{
+    /**
+     * Get the path the user should be redirected to when they are not authenticated.
+     */
+    protected function redirectTo(Request $request): ?string
+    {
+        return $request->expectsJson() ? null : route('login');
+    }
+}
+
+// OrderHistory
+Route::get('/orderhistory', [OrderHistoryController::class, 'showOrderHistory'])
+  ->name('orderhistory')
+  ->middleware('auth');
+
+// About
+Route::get('/about', [AboutController::class, 'showAbout'])
+  ->name('about')
+  ->middleware('auth');
+```
 
 ## B04 - Polling
 In my application, all data is fetched and rendered on the server side, and updating the HTML content with JavaScript would lead to performance issues. To address this, I decided to implement a polling-like technique on the front-end side. The approach involves refreshing the entire page every 5 minutes to ensure the displayed information is up-to-date. While this method may not be considered the best practice due to potential drawbacks such as increased bandwidth usage and server load, it provides a simple and effective way to keep the data current without introducing complex client-side scripting. As my application primarily relies on server-side rendering, this polling approach meets my immediate needs.
