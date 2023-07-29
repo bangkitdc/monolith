@@ -1,5 +1,3 @@
-# Explanation
-
 ## B01 - OWASP
 1. A03-Injection (SQL)
 In a SQL injection attack, the attacker manipulates the application's input fields to inject malicious SQL code into the database query. If the application does not properly validate or sanitize user input and directly includes it in the SQL query, the injected code will be executed by the database, leading to unauthorized access or unintended actions.
@@ -78,6 +76,25 @@ Route::get('/about', [AboutController::class, 'showAbout'])
   ->name('about')
   ->middleware('auth');
 ```
+
+3. A04 - Insecure Design
+Design flaws can lead to significant security vulnerabilities that are difficult to address without re-architecting the application. The main idea behind A04 is to emphasize the importance of secure design principles and threat modeling early in the development process. Implementation:
+- Error handling
+- Good auth mechanism
+
+<div align="center">
+    <img height="500" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/35523033-03f8-4fad-bbbe-94a99057a7d4">
+    <p align="center"><em>Input Validation</em></p>
+    </br>
+    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/c6b14b44-1b6b-4cdf-8aa2-1b289e8bb13b">
+    <p align="center"><em>Good Auth Mechanism</em></p>
+    </br>
+    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/7679ab35-49fe-4134-ba75-70c8452c7485">
+    <p align="center"><em>No Data Handling</em></p>
+    </br>
+    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/d7e3f50f-da53-4934-b933-36c97a628f23">
+    </br>
+</div>
 
 ## B04 - Polling
 In my application, all data is fetched and rendered on the server side, and updating the HTML content with JavaScript would lead to performance issues. To address this, I decided to implement a polling-like technique on the front-end side. The approach involves refreshing the entire page every 5 minutes to ensure the displayed information is up-to-date. While this method may not be considered the best practice due to potential drawbacks such as increased bandwidth usage and server load, it provides a simple and effective way to keep the data current without introducing complex client-side scripting. As my application primarily relies on server-side rendering, this polling approach meets my immediate needs.
