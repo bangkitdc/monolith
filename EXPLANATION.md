@@ -1,5 +1,40 @@
 # Explanation
 
+## B01 - OWASP
+1. A03-Injection (SQL)
+In a SQL injection attack, the attacker manipulates the application's input fields to inject malicious SQL code into the database query. If the application does not properly validate or sanitize user input and directly includes it in the SQL query, the injected code will be executed by the database, leading to unauthorized access or unintended actions.
+
+Here's an example of a vulnerable SQL query:
+``` sql
+SELECT * FROM users WHERE username = 'admin' AND password='password123'
+```
+In this query, the application is checking the 'username' and 'password' fields for login purposes.
+
+An attacker can perform a SQL injection by inputting the following into the username field:
+``` sql
+admin' OR '1'='1
+```
+
+The SQL injection manipulates the query to the following:
+``` sql
+SELECT * FROM users WHERE username = 'admin' OR '1'='1' AND password='password123'
+```
+By typing ```admin' OR '1'='1``` in the username field and with a random password, the user will log in successfully.
+
+OR
+``` sql
+' or 1=1--
+```
+This query returns the first user in the database as validation for the username field, because 1 does in fact equal 1, while ignoring the request for a password due to the comment at the end.
+
+https://github.com/bangkitdc/monolith/assets/87227379/622d61f5-633b-4135-807e-1050e0d38e2a
+
+<div align="center">
+    <img height="220" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/27c0bf20-166e-4de1-bc4c-e709280f4ea2">
+    <img height="220" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/09acb514-3fe7-496b-a81f-67650a921e41">
+</div>
+
+2. 
 
 ## B04 - Polling
 In my application, all data is fetched and rendered on the server side, and updating the HTML content with JavaScript would lead to performance issues. To address this, I decided to implement a polling-like technique on the front-end side. The approach involves refreshing the entire page every 5 minutes to ensure the displayed information is up-to-date. While this method may not be considered the best practice due to potential drawbacks such as increased bandwidth usage and server load, it provides a simple and effective way to keep the data current without introducing complex client-side scripting. As my application primarily relies on server-side rendering, this polling approach meets my immediate needs.
