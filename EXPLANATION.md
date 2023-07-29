@@ -188,7 +188,7 @@ Responsive layout, **things to notice: Navigation Bar**
 </div>
 
 ## B07 - Dokumentasi API
-You can read the full documentation here [Swagger](https://app.swaggerhub.com/apis/bangkitdc/single-service/1.0.0)
+You can read the full documentation here [Swagger](https://app.swaggerhub.com/apis/bangkitdc/monolith/1.0.0)
 
 ### Endpoint
 By default, there were 5 APIs that you can use. Here it is :
