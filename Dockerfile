@@ -25,7 +25,7 @@ CMD php artisan migrate && \
   php artisan cache:clear && \
   php artisan config:clear && \
   php artisan route:clear && \
-  php artisan serve --host=0.0.0.0 --port=$(php -r "echo env('PORT', '8080');") --env=.en
+  php artisan serve --host=0.0.0.0 --port=8080 --env=.env
 
 # ==============================================================================
 #  node
@@ -37,4 +37,4 @@ COPY . .
 RUN npm install --global cross-env
 RUN npm install
 
-# VOLUME /var/www/node_modules
+VOLUME /var/www/node_modules
