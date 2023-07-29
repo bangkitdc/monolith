@@ -1,5 +1,6 @@
 ## B01 - OWASP
 1. A03-Injection (SQL)
+
 In a SQL injection attack, the attacker manipulates the application's input fields to inject malicious SQL code into the database query. If the application does not properly validate or sanitize user input and directly includes it in the SQL query, the injected code will be executed by the database, leading to unauthorized access or unintended actions.
 
 Here's an example of a vulnerable SQL query:
@@ -31,13 +32,17 @@ https://github.com/bangkitdc/monolith/assets/87227379/622d61f5-633b-4135-807e-10
     <img height="220" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/27c0bf20-166e-4de1-bc4c-e709280f4ea2">
     <img height="220" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/09acb514-3fe7-496b-a81f-67650a921e41">
 </div>
+</br>
 
-2. Broken Access Control
+2. A01 - Broken Access Control
+
 Access control enforces a policy such that users cannot act outside of their intended permissions. Failures typically lead to unauthorized information disclosure, modification, or destruction of all data or performing a business function outside the user's limits.
 
 https://github.com/bangkitdc/monolith/assets/87227379/75bdacf8-7b74-41c7-84e1-33c6d4154afd
 
 I'm implementing middleware for every route that can be accessed by authenticated users.
+
+Single Service
 ``` go
 // Protected routes (Middleware)
 api := router.PathPrefix("/").Subrouter()
@@ -54,6 +59,7 @@ api.HandleFunc("/barang/{id}", barangcontroller.UpdateBarang).Methods("PUT")
 api.HandleFunc("/barang/{id}", barangcontroller.DeleteBarang).Methods("DELETE")
 ```
 
+Monolith
 ``` php
 class Authenticate extends Middleware
 {
@@ -78,9 +84,8 @@ Route::get('/about', [AboutController::class, 'showAbout'])
 ```
 
 3. A04 - Insecure Design
+
 Design flaws can lead to significant security vulnerabilities that are difficult to address without re-architecting the application. The main idea behind A04 is to emphasize the importance of secure design principles and threat modeling early in the development process. Implementation:
-- Error handling
-- Good auth mechanism
 
 <div align="center">
     <img height="500" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/35523033-03f8-4fad-bbbe-94a99057a7d4">
@@ -225,23 +230,126 @@ By default, there were 5 APIs that you can use. Here it is :
 ## B08 - SOLID
 1. Single Responsibility Principle (SRP)
 
-Each component or class should have a single responsibility. I'm using Models-Controllers (MC) pattern and then added Middleware and Helper to support and provide great functionality for the application.
+The SRP states that a class should have only one reason to change, meaning it should have a single responsibility or purpose. I'm using MVC Design (Model-View-Controller).
+
+- Login
+- Register
+- Cart
+- Catalog
+- Order History
+
+Every module has its own MVC structure.
 
 2. Open/Closed Principle (OCP)
 
-Entities (classes, modules, functions) should be open for extension but closed for modification.
+The OCP states that entities (classes, modules, functions) should be open for extension but closed for modification. It means you should be able to extend the behavior of an entity without modifying its existing code.
+
+``` php
+class CatalogController extends Controller
+{
+  /**
+   * Display the catalog
+   *
+   * @return \Illuminate\Http\Response
+   */
+
+    //
+}
+
+class Authenticate extends Middleware
+{
+    /**
+     * Get the path the user should be redirected to when they are not authenticated.
+     */
+
+    //
+}
+
+```
 
 3. Liskov Substitution Principle (LSP)
 
-The Liskov Substitution Principle (LSP) is primarily concerned with the behavior of objects in a class hierarchy and how derived types can be substituted for their base types without affecting the correctness of the program. Since my code doesn't involve inheritance or class hierarchies, LSP is not directly applicable in this context.
+The LSP states that objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program.
+
+``` php
+public function updateCatalog(Request $request)
+  {
+    //
+
+          // Create the OrderHistory if not created already
+          if (!$orderhistory) {
+            $orderhistory = OrderHistory::create([
+              'user_id' => $request->user()->id,
+              'total_harga' => 0,
+            ]);
+          }
+
+          // Create the OrderItem record and associate it with the OrderHistory
+          $orderItem = new OrderItem([
+            'nama' => $barang['nama'],
+            'quantity' => $barang['quantity'],
+            'harga' => $barang['harga'],
+          ]);
+
+          $orderhistory->orderItems()->save($orderItem);
+
+    //
+  }
+
+public function getRecommendation(Request $request, $except) {
+    // Get the currently authenticated user
+    $user = $request->user();
+
+    // Retrieve the last OrderHistory for the user
+    $orderhistory = $user->orderhistory()->latest()->first();
+
+    if ($orderhistory) {
+      // Get the order items for the last OrderHistory
+      $orderItems = $orderhistory->orderItems;
+
+      // Shuffle the array of order items randomly
+      $shuffledOrderItems = $orderItems->shuffle();
+      $randomOrderItem = $shuffledOrderItems->take(1);
+
+    //
+
+}
+```
+
+Superclass can be replaceable with objects of its subclasses and not affecting the correctness of the program.
 
 4. Interface Segregation Principle (ISP)
 
 The Interface Segregation Principle is about creating specific interfaces that are tailored to the needs of the clients that use them, rather than having large, monolithic interfaces.
 
+The User implicitly implements interface JWTSubject. Since the JWTSubject interface has two required methods (getJWTIdentifier() and getJWTCustomClaims()), and the User class provides the implementations for these methods, it implicitly adheres to the JWTSubject interface.
+
+``` php
+class User extends Authenticatable implements JWTSubject
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    //
+
+    // Methods from the JWTSubject interface
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+}
+```
+
 5. Dependency Inversion Principle (DIP)
 
 The DIP states that high-level modules should not depend on low-level modules; both should depend on abstractions. 
+
+The CatalogController class depends on external components like the HTTP client and the OrderHistory and OrderItem models. However, it seems that the controller is not directly instantiating these dependencies but rather receiving them through dependency injection. The Http::get method and OrderHistory model are injected into the CatalogController constructor and method parameters, respectively.
 
 ## B10 - Automated Testing
 I made Unit Test per Feature based on the page/ controller of the application. Here is the example of LoginTest.
