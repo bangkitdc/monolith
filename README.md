@@ -72,3 +72,5 @@ Open 2 terminal: for laravel application and for vite preprocessor (for the Tail
 
 ## Copyright
 2023 © bangkitdc. All Rights Reserved.
+Nama : Muhammad Bangkit Dwi Cahyono
+NIM : 13521055
