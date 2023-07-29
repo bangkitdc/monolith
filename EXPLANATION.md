@@ -200,7 +200,7 @@ By default, there were 5 APIs that you can use. Here it is :
 | POST | base_url/login | Login | |
 | GET | base_url/register | Register Page | |
 | POST | base_url/register | Register | |
-| POST | base_url/logout | Logout | |
+| POST | base_url/logout | Logout | &#10004; |
 
 #### Catalog
 |Method| URL | Explanation | Need Auth |
