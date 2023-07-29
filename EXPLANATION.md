@@ -26,11 +26,11 @@ OR
 ```
 This query returns the first user in the database as validation for the username field, because 1 does in fact equal 1, while ignoring the request for a password due to the comment at the end.
 
-https://github.com/bangkitdc/monolith/assets/87227379/622d61f5-633b-4135-807e-1050e0d38e2a
+https://github.com/bangkitdc/monolith/assets/87227379/0c40a90b-1eed-468a-a3f3-4e03a83fd329
 
 <div align="center">
-    <img height="220" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/27c0bf20-166e-4de1-bc4c-e709280f4ea2">
-    <img height="220" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/09acb514-3fe7-496b-a81f-67650a921e41">
+    <img width="400" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/7d9883f5-3265-450e-848d-ad447f702520">
+    <img width="400" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/e3b0bb19-ea16-4e71-ae3d-6bb09a000197">
 </div>
 </br>
 
@@ -38,7 +38,8 @@ https://github.com/bangkitdc/monolith/assets/87227379/622d61f5-633b-4135-807e-10
 
 Access control enforces a policy such that users cannot act outside of their intended permissions. Failures typically lead to unauthorized information disclosure, modification, or destruction of all data or performing a business function outside the user's limits.
 
-https://github.com/bangkitdc/monolith/assets/87227379/75bdacf8-7b74-41c7-84e1-33c6d4154afd
+https://github.com/bangkitdc/monolith/assets/87227379/298d91f5-b080-4ad9-ba5a-e170ca7c2c0b
+
 
 I'm implementing middleware for every route that can be accessed by authenticated users.
 
@@ -88,17 +89,17 @@ Route::get('/about', [AboutController::class, 'showAbout'])
 Design flaws can lead to significant security vulnerabilities that are difficult to address without re-architecting the application. The main idea behind A04 is to emphasize the importance of secure design principles and threat modeling early in the development process. Implementation:
 
 <div align="center">
-    <img height="500" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/35523033-03f8-4fad-bbbe-94a99057a7d4">
+    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/15173cf5-c839-47da-8838-3d9200568163">
     <p align="center"><em>Input Validation</em></p>
     </br>
-    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/c6b14b44-1b6b-4cdf-8aa2-1b289e8bb13b">
+    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/1a29f926-7daa-44c1-be7b-cce6048007dd">
     <p align="center"><em>Good Auth Mechanism</em></p>
     </br>
-    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/7679ab35-49fe-4134-ba75-70c8452c7485">
-    <p align="center"><em>No Data Handling</em></p>
+    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/3d759ad2-9d0f-4e99-8539-b21af3300c47">
+    <p align="center"><em>"No Data" Handling</em></p>
     </br>
-    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/d7e3f50f-da53-4934-b933-36c97a628f23">
-    </br>
+    <img width="600" alt="image" src="https://github.com/bangkitdc/monolith/assets/87227379/35a36b9c-997a-4986-9361-7d983f49c0c4">
+    <p align="center"><em>Constraint Handling</em></p>
 </div>
 
 ## B04 - Polling
@@ -404,19 +405,18 @@ class LoginTest extends TestCase
 
 You can check out the full Unit Test in tests/Feature.
 
-https://github.com/bangkitdc/monolith/assets/87227379/37ac3222-3451-469b-9ab4-7b88187782bd
-
+https://github.com/bangkitdc/monolith/assets/87227379/92d75288-d019-4cf6-94a9-5a0968572c14
 
 ## B11 - Additional Features
 1. Search Functionality
 
 Based on Barang's name or Barang's product. (Catalog Search)
 
-https://github.com/bangkitdc/monolith/assets/87227379/002db2b5-90f5-4ba5-a3ab-71fbf3f8fa9a
+https://github.com/bangkitdc/monolith/assets/87227379/d6e385fb-7aac-4981-a4d5-85cb0384ca67
 
 Based on Barang's name in Order History or the year of Order History created. (Order History Search)
 
-https://github.com/bangkitdc/monolith/assets/87227379/ec392dfa-a798-4cd9-b4e2-acb893595b2b
+https://github.com/bangkitdc/monolith/assets/87227379/ee41ceab-c745-495e-a8b4-da6a94c883d9
 
 </br>
 
@@ -463,13 +463,13 @@ $(document).ready(function() {
 
 Using a session in PHP to update the cart, and then added the alert (toastify-like) to make the user know what's happening. To add responsiveness also, all input handles are in the frontend. if the stock of one of the Barang in the middle of the transaction got less than the stock, then the transaction will be failed. Every successful transaction will update the DB in Single Service.
 
-https://github.com/bangkitdc/monolith/assets/87227379/ec79ba7a-e264-4342-b44b-1e5a90e2cf68
+https://github.com/bangkitdc/monolith/assets/87227379/0671e613-534f-4740-86a5-a7786c263009
 
 3. Barang Recommendation
 
 Barang Recommendations are based on the last user's transaction/ order. Recommendations based on the same Perusahaan as the Barang on the last transaction. If there is more than 1 Barang, then it will random the choice. I set the recommendations to be a maximum of 4 Barangs. If there are more than 4 Barangs, then it will also randomize so that always be a maximum of 4 Barangs. The page Barang that's being open won't be on recommendations.
 
-https://github.com/bangkitdc/monolith/assets/87227379/ae37ede2-3c43-479f-9a62-95d2e7308461
+https://github.com/bangkitdc/monolith/assets/87227379/a175defb-a9a1-4079-a027-fd486ce99b0e
 
 ``` php
   public function getRecommendation(Request $request, $except) {
