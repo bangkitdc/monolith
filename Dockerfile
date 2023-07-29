@@ -25,7 +25,7 @@ CMD php artisan migrate && \
   php artisan cache:clear && \
   php artisan config:clear && \
   php artisan route:clear && \
-  php artisan serve --host=0.0.0.0 --port=$(php -r "echo env('PORT', '8080');") --env=.en --env=.env
+  php artisan serve --host=0.0.0.0 --port=$(php -r "echo env('PORT', '8080');") --env=.en
 
 # ==============================================================================
 #  node
