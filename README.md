@@ -1,5 +1,7 @@
 # F02 & F03 - Monolith (FE & BE)
 
+https://github.com/bangkitdc/monolith/assets/87227379/f4ff1045-0d54-46ff-979b-889b8f8262ad
+
 ## Documentation
 You can read all technical and API documentation from here [Documentation](EXPLANATION.md)
 
