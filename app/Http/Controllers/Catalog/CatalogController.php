@@ -135,6 +135,25 @@ class CatalogController extends Controller
 
           // Set an error flash message with the actual error message from the API response
           $errorMessage = $response->json()['message'] ?? 'Error occurred in the server';
+
+          // Get the current stock quantity for the item from the API
+          $response = Http::get($baseUrl . '/barang-noauth/' . $id);
+
+          if ($response->successful()) {
+            // Retrieve the data from the response
+            $data = $response->json();
+            $currentStock = $data['data']['stok'];
+
+            // Update the cart's quantity to match the available stock
+            if ($barang['quantity'] > $currentStock) {
+              $cart[$id]['stok'] = $currentStock;
+              $cart[$id]['quantity'] = $currentStock;
+            }
+          }
+
+          // Save the updated cart to the session
+          $request->session()->put('cart', $cart);
+          
           return back()->withErrors(['error' => $errorMessage]);
         }
       }

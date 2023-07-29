@@ -32,7 +32,7 @@
                     type="number" 
                     name="quantity" 
                     id="quantity" 
-                    min="1" 
+                    max="{{ $barang['stok'] }}"
                     value="1"
                   />
                   <button 
@@ -95,7 +95,7 @@
       const inputCounter = document.querySelector(".input-counter input");
       const plusButton = document.querySelector(".input-counter .plus");
       const minusButton = document.querySelector(".input-counter .minus");
-      const max = parseInt(inputCounter.parentElement.getAttribute("data-stok")) || Infinity;
+      const max = parseInt(inputCounter.getAttribute("max")) || Infinity;
       
       plusButton.addEventListener("click", function() {
         incrementValue(inputCounter);
