@@ -70,6 +70,12 @@ Open 2 terminal: for laravel application and for vite preprocessor (for the Tail
     php artisan serve --port=8080
 ```
 
+Initial account
+``` sh
+    username: admin
+    password: admin
+```
+
 ## Copyright
 2023 © bangkitdc. All Rights Reserved.
 
